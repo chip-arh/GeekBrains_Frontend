@@ -1,4 +1,5 @@
 /* Task 1 */
+
 var i = process.argv[2];    // исходное число
 var a = +process.argv[3];   // исходная система счисления
 var b = +process.argv[4];   // конечная система счисления
