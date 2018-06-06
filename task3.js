@@ -26,7 +26,7 @@ if (Math.min(t1,t2)>=1 & Math.max(t1,t2)<=100000){
         out = out +" "+getext(s,"секунд");
     }
 
-    console.log(out);
+    console.log(out.trim());
 } else {
     if (t1<1 | t1>100000) console.log("1 <= t1 <= 100000 - не соблюдается");
     if (t2<1 | t2>100000) console.log("1 <= t2 <= 100000 - не соблюдается");
