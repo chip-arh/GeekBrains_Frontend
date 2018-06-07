@@ -12,27 +12,18 @@ if (Math.min(a,b)>=2 & Math.max(a,b)<=36)  //если параметры соо�
     var iMax = "10000"
     for (var n=0; n<iMax.length; n++)
     {
-        var _i = iMax.toUpperCase().charCodeAt(n)-48; // получаем цифру 0..9
+        var _i = ConvToNumber(iMax[n]);
         rnMax = rnMax*a + _i;
     }
-    for (var n=0; n<i.length; n++)
+    for (var n=0; n<i.length; n++) 
     {
-        var _i = i.toUpperCase().charCodeAt(n)-48; // получаем цифру 0..9
-        if (_i>9 & _i<17){
-            console.log("i не число")
+        var _i = ConvToNumber(i[n]);
+        if (_i>=0 & _i<a){
+            rn = rn*a + _i;    
+        } else{
+            console.log("чило i не соответсвует исходной системе счисления")
             return;
         }
-        if (_i>16) _i = _i-7;        // если больше то это буква
-            if (_i>=a){
-                console.log("чило i не соответсвует исходной системе счисления")
-                return;
-            }
-            if (_i<0){ 
-                console.log("i не число")
-                return;
-            }
-        rn = rn*a + _i;
-
     }
     //приверим получившееся число 
     if (rn>=0 & rn<=rnMax){
@@ -62,4 +53,18 @@ if (Math.min(a,b)>=2 & Math.max(a,b)<=36)  //если параметры соо�
   {
     console.log('2<= b <= 36 - не соблюдается'); 
   }
+}
+
+function ConvToNumber( m ) {
+    for (var n=0; n<=9; n++)
+    {
+        if ((n+48)==(m.charCodeAt(0)))
+            return n;
+    }
+    for (var n=10; n<=36; n++)
+    {
+        if ((n+87)==(m.charCodeAt(0)))
+            return n;
+    }
+    return -1;
 }
