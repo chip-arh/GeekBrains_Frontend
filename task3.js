@@ -7,13 +7,9 @@ if (Math.min(t1,t2)>=1 & Math.max(t1,t2)<=100000){
     var ss=t1+t2;
     var s = ss%60;                    //секунды
     var m = Math.trunc(ss/60)%60      //минуты
-    var h = Math.trunc(ss/3600)%24    //часы
-    var d = Math.trunc(ss/(3600*24))  //дни
+    var h = Math.trunc(ss/3600)    //часы
     var out = "";
     
-    if (d==1) out = "1 день";
-    if (d==2) out = "2 дня";
-
     if ((h>0) | (out.length>0)){
         out = (out +" "+getext(h,"час")).trim();
     }
@@ -40,7 +36,7 @@ function getext( m,  h){
     if ((m>=2 & m<=4) | (m>=22 & m<=24) | (m>=32 & m<=34)  | (m>=42 & m<=44)  | (m>=52 & m<=54)){
         res = m.toString()+" "+h+((h=="час")? "а":"ы")
     } 
-    if ((m==0) | (m>=5 & m<=20) | (m>=25 & m<=30) | (m>=35 & m<=40)  | (m>=45 & m<=50)  | (m>=55 & m<=59)) {
+    if ((m>=5 & m<=20) | (m>=25 & m<=30) | (m>=35 & m<=40)  | (m>=45 & m<=50)  | (m>=55 & m<=59)) {
         res = m.toString()+" "+h+((h=="час")? "ов":"");
     }
     return res;

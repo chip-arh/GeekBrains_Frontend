@@ -9,32 +9,19 @@ if (Math.min(a,b)>=2 & Math.max(a,b)<=36)  //если параметры соо�
     // для начала приведем число в нормальный вид (десятичная система)
     var rn = 0;
     var rnMax = 0;
-    var iMax = "10000"
-    for (var n=0; n<iMax.length; n++)
-    {
-        var _i = ConvToNumber(iMax[n]);
-        rnMax = rnMax*a + _i;
-    }
-    for (var n=0; n<i.length; n++) 
-    {
-        var _i = ConvToNumber(i[n]);
-        if (_i>=0 & _i<a){
-            rn = rn*a + _i;    
-        } else{
-            console.log("чило i не соответсвует исходной системе счисления")
-            return;
-        }
-    }
+    
+    rn = ConvToNumber(i.toUpperCase(),a);
+    
     //приверим получившееся число 
-    if (rn>=0 & rn<=rnMax){
+    if (rn>=0 & rn<=10000){
         var out = "";
         if (rn==0){
             out="0";  
         } else { 
-        //Теперь пересчитаем в необходимую
+        //Теперь пересчитаем в необходимую 
             while (rn>0){
                 var _o = (rn%b)+48;  //получили цифру
-                if (_o>57) _o=_o+39; //если это буква 
+                if (_o>57) _o=_o+39; //если это буква  
                 out = String.fromCharCode(_o)+out;
                 rn  = Math.trunc(rn/b) ;
             }
@@ -55,16 +42,18 @@ if (Math.min(a,b)>=2 & Math.max(a,b)<=36)  //если параметры соо�
   }
 }
 
-function ConvToNumber( m ) {
-    for (var n=0; n<=9; n++)
-    {
-        if ((n+48)==(m.charCodeAt(0)))
-            return n;
+function ConvToNumber( m,s ) {
+    var buffer = new Buffer(m, 'ascii');
+    res= 0;
+    for (var i = 0; i<buffer.length;i++){
+        if (buffer[i]>=48 & buffer[i]<=57){
+            res=res*s+buffer[i] - 48;
+        } else {
+            if (buffer[i]>=65 & buffer[i]<=90){
+                res=res*s+buffer[i] - 55;
+            } else res = -1
+        }
     }
-    for (var n=10; n<=36; n++)
-    {
-        if ((n+87)==(m.charCodeAt(0)))
-            return n;
-    }
-    return -1;
+    //console.log(res)
+    return res;
 }
